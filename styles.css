@@ -1,0 +1,39 @@
+/* Hero Image Styling */
+.hero-image {
+    background-image: url('https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=1350&q=80'); /* Byt ut till en verklig Harry Potter-bild-URL */
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Overlay för bättre textsynlighet */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-image h1 {
+    position: relative;
+    z-index: 1;
+}
+
+/* Bokkort Styling */
+.book-card {
+    margin-bottom: 30px;
+}
+
+.book-card img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.book-card .card-body {
+    height: auto;
+    overflow: hidden;
+}
