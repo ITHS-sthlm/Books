@@ -35,6 +35,9 @@ function fetchBooks() {
             console.log('Data från API:', data); // Logga den hämtade datan för felsökning
 
             // Kontrollera om data är en array
+            /* Array.isArray() är en inbyggd JavaScript-metod som används för att
+            kontrollera om ett givet värde är en array (en lista av element). Den returnerar:
+           true om det angivna värdet är en array. */
             if (!Array.isArray(data)) {
                 console.error('Oväntat dataformat:', data); // Logga fel om data inte är en array
                 booksContainer.innerHTML =
@@ -66,7 +69,9 @@ function populateFilterYear(books) {
             books.map((book) => new Date(book.releaseDate).getFullYear())
         )
     ].sort((a, b) => a - b);
-
+    /* Spread-operatorn används för att “sprida ut” element från en array eller egenskaper
+ från ett objekt. Detta är särskilt användbart när du vill kopiera, kombinera eller lägga till element utan att
+modifiera originalet. */
     // Skapa en <option> för varje år och lägg till i filterYear dropdown
     years.forEach((year) => {
         const option = document.createElement('option'); // Skapa ett nytt option-element
@@ -76,11 +81,6 @@ function populateFilterYear(books) {
     });
 }
 
-/**
- * Skapar HTML-kod för ett bokkort
- * @param {Object} book - Bokobjekt från API:et
- * @returns {string} - HTML-sträng för bokkortet
- */
 function createBookCard(book) {
     // Hämta egenskaper från bokobjektet med fallback-värden om de saknas
     const title = book.title || 'Ingen titel';
@@ -121,25 +121,23 @@ function createBookCard(book) {
     `;
 }
 
-/**
- * Trunkerar text till ett maximalt antal tecken och lägger till "..." om det behövs
- * @param {string} text - Text att trunkera
- * @param {number} maxLength - Maximal längd på texten
- * @returns {string} - Trunkerad text
- */
+/* Funktionen truncateText tar en textsträng och ett maximalt teckenantal som indata.
+ Den kontrollerar om texten är längre än det angivna maximala antalet tecken.
+ Om den är det, trunkerar den texten till maxLength tecken och lägger till tre punkter (...) i slutet
+ för att indikera att texten har förkortats. Om texten är kortare än eller lika med maxLength,
+ returnerar den texten oförändrad. Om texten är tom eller inte definierad, returnerar den en tom sträng. */
 function truncateText(text, maxLength) {
     if (!text) return ''; // Om texten är tom, returnera tom sträng
     if (text.length > maxLength) {
         // Om texten är längre än maxLength
+        /* substring är en inbyggd metod i JavaScript som används för att returnera en del av
+        en sträng mellan två specificerade index (positioner) och returnerar den nya strängen.
+         Ursprungliga strängen förblir oförändrad. */
         return text.substring(0, maxLength) + '...'; // Trunkera och lägg till "..."
     }
     return text; // Annars, returnera originaltexten
 }
 
-/**
- * Visar böckerna på sidan genom att skapa bokkort och lägga till dem i DOM
- * @param {Array} books - Array av bokobjekt att visa
- */
 function displayBooks(books) {
     if (Array.isArray(books) && books.length > 0) {
         // Kontrollera att books är en icke-tom array
