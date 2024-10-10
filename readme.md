@@ -138,3 +138,4 @@ När sidan har laddats, hämtar vi böckerna och visar dem på sidan.
 document.addEventListener('DOMContentLoaded', fetchBooks);
 
 Denna beskrivning är anpassad för att läsas enkelt i en `.md`-fil, med fokus på att bryta ned vad koden gör i olika steg.
+# Books
